@@ -1,0 +1,19 @@
+{
+    "name": "aymard/fifidianana",
+    "description": "Fifidianana diakona",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\":"src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abreny",
+            "email": "fanabned@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
