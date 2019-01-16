@@ -20,7 +20,8 @@ class CandidatController extends Controller {
     }
 
     public function resultatAction(){
-        $result = array();
+        $dao = new CandidatDao();
+        $result = $dao->displayResult();
         return $this->render('candidat/result',array('result'=> $result));
     }
 } 

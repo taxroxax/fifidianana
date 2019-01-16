@@ -92,7 +92,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    FIFIDIANANA DIAKONA
+                    VALIM-PIFIDIANANA
                 </h1>
                 <!-- <ol class="breadcrumb">
                      <li class="active">
@@ -103,7 +103,24 @@
         </div>
         <!-- /.row -->
         <div class="row">
-            valim-pifidianana
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>ANARANA</th>
+                        <th>FARITRA</th>
+                        <th>VATO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($result as $r): ?>
+                    <tr>
+                        <td><?php echo $r['candidat']->getNom() ?></td>
+                        <td> <?php echo $r['candidat']->getCodeQuartier() ?></td>
+                        <td><?php echo $r['vote'] ?></td>
+                    </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
 
         </div>
 

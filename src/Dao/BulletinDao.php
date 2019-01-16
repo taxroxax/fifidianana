@@ -37,6 +37,4 @@ class BulletinDao {
         $id = $statement->execute(array($bulletin->getCandidat()->getId(),$bulletin->getCodeBulletin(),$bulletin->getStatus()));
         return $id;
     }
-
-
 } 
