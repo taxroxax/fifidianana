@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 
+use App\Web\Config;
 use App\Web\Route;
 
 class Controller {
@@ -24,6 +25,7 @@ class Controller {
 
     public function redirect($routeName){
         if($selected_route = $this->route->findByName($routeName)){
+            header('Location: '.Config::BASE_URL.$selected_route['route']);
             $controller = new $selected_route['controller'];
             $action = $selected_route['action'];
             return $controller->$action();

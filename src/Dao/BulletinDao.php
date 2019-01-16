@@ -38,4 +38,5 @@ class BulletinDao {
         return $id;
     }
 
+
 } 

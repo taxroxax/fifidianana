@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>FIANGONANA ANISOZATO HEBRONA</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -46,11 +46,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">SB Admin</a>
+        <a class="navbar-brand" href="index.html">ANOSIZATO HEBRONA</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
-        <li class="dropdown">
+       <!-- <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
                     class="caret"></b></a>
             <ul class="dropdown-menu message-dropdown">
@@ -80,7 +80,7 @@
                                     </span>
 
                             <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
+                                <h5 class="media-heading"><strong>RAJAONARILALA Tahinasoa</strong>
                                 </h5>
 
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
@@ -98,7 +98,7 @@
                                     </span>
 
                             <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
+                                <h5 class="media-heading"><strong>RAJAONARILALA Tahinasoa</strong>
                                 </h5>
 
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
@@ -140,9 +140,9 @@
                     <a href="#">View All</a>
                 </li>
             </ul>
-        </li>
+        </li>-->
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> RAJAONARILALA Tahinasoa <b
                     class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
@@ -165,7 +165,10 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li class="active">
-                <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                <a href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>"><i class="fa fa-fw fa-check-circle-o"></i> Fifidianana</a>
+            </li>
+            <li>
+                <a href="resultat"><i class="fa fa-fw fa-dashboard"></i>Valim-pifidianana</a>
             </li>
         </ul>
     </div>
@@ -180,13 +183,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Dashboard
+                    FIFIDIANANA DIAKONA
                 </h1>
-                <ol class="breadcrumb">
+               <!-- <ol class="breadcrumb">
                     <li class="active">
-                        <i class="fa fa-dashboard"></i> Dashboard
+                        <i class="fa fa-dashboard"></i> FIFIDIANANA DIAKONA
                     </li>
-                </ol>
+                </ol>-->
             </div>
         </div>
         <!-- /.row -->
@@ -199,6 +202,8 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
+                                        L:Lahy<br>
+                                        V:Vavy
                                         <!--                                        <i class="fa fa-comments fa-5x"></i>-->
                                     </div>
                                     <div class="col-xs-9 text-right">
@@ -212,9 +217,10 @@
                                     <?php foreach ($genre as $g): ?>
                                         <div class="col-md-6">
                                             <?php foreach ($list[$q][$g] as $candidat): ?>
-                                                <div>
+                                                <div class="col-sm-1">
+                                                    <?php echo $candidat->getGenre() . $candidat->getRang(); ?>
                                                     <input name="status[<?php echo $q;?>][<?php echo $candidat->getId();?>]"
-                                                        type="checkbox"><?php echo $candidat->getGenre() . $candidat->getRang(); ?>
+                                                        type="checkbox">
                                                 </div>
 
                                             <?php endforeach; ?>

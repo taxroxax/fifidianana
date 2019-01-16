@@ -18,4 +18,9 @@ class CandidatController extends Controller {
         $genre = array_keys($list[$quartier[0]]);
         return $this->render('candidat/index',array('list'=>$list,'quartier'=>$quartier,'genre'=>$genre));
     }
+
+    public function resultatAction(){
+        $result = array();
+        return $this->render('candidat/result',array('result'=> $result));
+    }
 } 
