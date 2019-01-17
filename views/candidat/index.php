@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="../assets/img/AHebrona.png" rel="icon">
 
     <title>FIANGONANA ANISOZATO HEBRONA</title>
 
@@ -29,7 +30,11 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style type="text/css">
+        .panell{
+            display:flex;
+        }
+    </style>
 </head>
 
 <body>
@@ -46,117 +51,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">ANOSIZATO HEBRONA</a>
+        <a class="navbar-brand" href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>">
+            <small>
+                <img width="80%" height="35px" src="../assets/img/Logo.png" />
+            </small>
+        </a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
-       <!-- <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
-                    class="caret"></b></a>
-            <ul class="dropdown-menu message-dropdown">
-                <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-
-                            <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
-                                </h5>
-
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-
-                            <div class="media-body">
-                                <h5 class="media-heading"><strong>RAJAONARILALA Tahinasoa</strong>
-                                </h5>
-
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-
-                            <div class="media-body">
-                                <h5 class="media-heading"><strong>RAJAONARILALA Tahinasoa</strong>
-                                </h5>
-
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="message-footer">
-                    <a href="#">Read All New Messages</a>
-                </li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b
-                    class="caret"></b></a>
-            <ul class="dropdown-menu alert-dropdown">
-                <li>
-                    <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                </li>
-                <li>
-                    <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                </li>
-                <li>
-                    <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                </li>
-                <li>
-                    <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                </li>
-                <li>
-                    <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                </li>
-                <li>
-                    <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">View All</a>
-                </li>
-            </ul>
-        </li>-->
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> RAJAONARILALA Tahinasoa <b
                     class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Hiala </a>
                 </li>
             </ul>
         </li>
@@ -185,11 +93,6 @@
                 <h1 class="page-header">
                     FIFIDIANANA DIAKONA
                 </h1>
-               <!-- <ol class="breadcrumb">
-                    <li class="active">
-                        <i class="fa fa-dashboard"></i> FIFIDIANANA DIAKONA
-                    </li>
-                </ol>-->
             </div>
         </div>
         <!-- /.row -->
@@ -197,13 +100,27 @@
             <div class="row">
                 <?php foreach ($quartier as $q) : ?>
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-info">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        L:Lahy<br>
-                                        V:Vavy
+                                        <?php $nombreMale = []; ?>
+                                        <?php $nombreFemelle = []; ?>
+                                        <?php foreach ($genre as $g): ?>
+                                            <?php foreach ($list[$q][$g] as $candidat): ?>
+                                                <?php if($candidat->getGenre() == "L" ): ?>
+                                                    <?php $nombreMale[] = count($candidat->getRang())  ?>
+                                                <?php endif; ?>
+                                                <?php if($candidat->getGenre() == "V" ): ?>
+                                                    <?php $nombreFemelle[] = count($candidat->getRang())  ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+
+                                        <?php endforeach; ?>
+                                        <button type="button" class="btn btn-xs btn-success">L: Lahy (<?php echo array_sum($nombreMale); ?> isa) </button>
+                                        <button type="button" class="btn btn-xs btn-info">V: Vavy (<?php echo array_sum($nombreFemelle); ?> isa) </button>
+                                        <br>
                                         <!--                                        <i class="fa fa-comments fa-5x"></i>-->
                                     </div>
                                     <div class="col-xs-9 text-right">
@@ -215,9 +132,9 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <?php foreach ($genre as $g): ?>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
                                             <?php foreach ($list[$q][$g] as $candidat): ?>
-                                                <div class="col-sm-1">
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
                                                     <?php echo $candidat->getGenre() . $candidat->getRang(); ?>
                                                     <input name="status[<?php echo $q;?>][<?php echo $candidat->getId();?>]"
                                                         type="checkbox">
@@ -230,7 +147,7 @@
                             </div>
                             <a href="#">
                                 <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-left">Manaraka</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 
                                     <div class="clearfix"></div>
@@ -244,7 +161,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <input type="text" placeholder="CODE" name="code" class="form-control">
+                        <input autocomplete="off" type="text" placeholder="CODE" name="code" class="form-control">
                     </div>
 
                 </div>

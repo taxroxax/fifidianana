@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="../assets/img/AHebrona.png" rel="icon">
 
     <title>FIANGONANA ANISOZATO HEBRONA</title>
 
@@ -29,7 +30,80 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
 
+            window.onload = function() {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Fifidianana diakona 2019"
+                },
+                data: [{
+                    type: "pie",
+                    startAngle: 240,
+                   // yValueFormatString: "##0.00\"%\"",
+                    indexLabel: "{label} {y}",
+                    dataPoints: [
+                        <?php foreach($result as $r): ?>
+                        {y:<?php echo $r['vote'] ?>, label: "<?php echo $r['candidat']->getNom() ?>"},
+                        <?php endforeach; ?>
+                    ]
+                }]
+            });
+            chart.render();
+
+                var chart2 = new CanvasJS.Chart("chartContainerHisto", {
+                    animationEnabled: true,
+                    theme: "light2", // "light1", "light2", "dark1", "dark2"
+                    title:{
+                        text: "Fifidianana diakona 2019"
+                    },
+                    data: [{
+                        type: "column",
+                        legendMarkerColor: "grey",
+                        dataPoints: [
+                            <?php foreach($result as $r): ?>
+                            {y:<?php echo $r['vote'] ?>, label: "<?php echo $r['candidat']->getNom() ?>"},
+                            <?php endforeach; ?>
+                        ]
+                    }]
+                });
+                chart2.render();
+
+
+              /*  var chart3 = new CanvasJS.Chart("chartContainerPulman", {
+                    animationEnabled: true,
+                    theme: "light2", //"light1", "dark1", "dark2"
+                    title:{
+                        text: "Valim-pifidianana Diakona - 2019"
+                    },
+                    data: [{
+                        type: "funnel",
+                        indexLabelPlacement: "inside",
+                        indexLabelFontColor: "white",
+                        dataPoints: [
+                           eto ny data rehetra no miditra
+                        ]
+                    }]
+                });
+                calculatePercentage();
+                chart3.render();
+
+                function calculatePercentage() {
+                    var dataPoint = chart3.options.data[0].dataPoints;
+                    var total = dataPoint[0].y;
+                    for(var i = 0; i < dataPoint.length; i++) {
+                        if(i == 0) {
+                            chart3.options.data[0].dataPoints[i].percentage = 100;
+                        } else {
+                            chart3.options.data[0].dataPoints[i].percentage = ((dataPoint[i].y / total) * 100).toFixed(2);
+                        }
+                    }
+                }
+*/
+            }
+    </script>
 </head>
 
 <body>
@@ -46,7 +120,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">ANOSIZATO HEBRONA</a>
+        <a class="navbar-brand" href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>">
+            <small>
+                <img width="80%" height="35px" src="../assets/img/Logo.png" />
+            </small>
+        </a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -55,17 +133,7 @@
                     class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Hiala</a>
                 </li>
             </ul>
         </li>
@@ -94,38 +162,95 @@
                 <h1 class="page-header">
                     VALIM-PIFIDIANANA
                 </h1>
-                <!-- <ol class="breadcrumb">
-                     <li class="active">
-                         <i class="fa fa-dashboard"></i> FIFIDIANANA DIAKONA
-                     </li>
-                 </ol>-->
             </div>
         </div>
         <!-- /.row -->
         <div class="row">
-            <table class="table table-stripped">
-                <thead>
-                    <tr>
-                        <th>ANARANA</th>
-                        <th>FARITRA</th>
-                        <th>VATO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($result as $r): ?>
-                    <tr>
-                        <td><?php echo $r['candidat']->getNom() ?></td>
-                        <td> <?php echo $r['candidat']->getCodeQuartier() ?></td>
-                        <td><?php echo $r['vote'] ?></td>
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>ANARANA</th>
+                            <th>FARITRA</th>
+                            <th>VATO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($result as $r): ?>
+                        <tr>
+                            <td><?php echo $r['candidat']->getNom() ?></td>
+                            <td> <?php echo $r['candidat']->getCodeQuartier() ?></td>
+                            <td><?php echo $r['vote'] ?></td>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
+
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Fanehoana an-tsary ny vokatra</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-pie-chart">
+                                <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <a href="#">Fanazavana fanampiny <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Fanehoana an-tsary histogramme ny vokatra</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-pie-chart">
+                                <div id="chartContainerHisto" style="height: 400px; width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <a href="#">Fanazavana fanampiny <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- /.row -->
+       <!-- <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Fanehoana an-tsary ny vokatra</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-pie-chart">
+                                <div id="chartContainerPulman" style="height: 1600px; width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <a href="#">Fanazavana fanampiny <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
 
     </div>
     <!-- /.container-fluid -->
@@ -146,6 +271,15 @@
 <script src="../assets/js/plugins/morris/raphael.min.js"></script>
 <script src="../assets/js/plugins/morris/morris.min.js"></script>
 <script src="../assets/js/plugins/morris/morris-data.js"></script>
+
+<!-- Flot Charts JavaScript -->
+<!--[if lte IE 8]><script src="../assets/js/excanvas.min.js"></script><![endif]-->
+<script src="../assets/js/plugins/flot/jquery.flot.js"></script>
+<script src="../assets/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="../assets/js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="../assets/js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="../assets/js/plugins/flot/flot-data.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 </body>
 
