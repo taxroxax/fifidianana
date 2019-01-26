@@ -17,8 +17,13 @@ class Route
         array('route' => '/hello', 'name'=>'hello','controller' => 'App\Controllers\HomeController', 'action' => 'hello'),
         array('route' => '/', 'name'=>'candidat.list', 'controller' => 'App\Controllers\CandidatController', 'action' => 'listAction'),
         array('route' => '/bulletin/save', 'name'=>'bulletin.save','controller' => 'App\Controllers\BulletinController', 'action' => 'saveBulletin'),
-        array('route' => '/resultat', 'name'=>'resultat.show','controller' => 'App\Controllers\CandidatController', 'action' => 'resultatAction')
-    );
+        array('route' => '/resultat', 'name'=>'resultat.show','controller' => 'App\Controllers\CandidatController', 'action' => 'resultatAction'),
+        array('route' => '/login', 'name'=>'login.show','controller' => 'App\Controllers\LoginController', 'action' => 'login'),
+        array('route' => '/resultat-global', 'name'=>'resultat.global','controller' => 'App\Controllers\GlobalResultController', 'action' => 'globalResult'),
+        array('route' => '/logout', 'name'=>'logout','controller' => 'App\Controllers\LoginController', 'action' => 'logout'),
+        array('route' => '/contrainte', 'name'=>'contrainte','controller' => 'App\Controllers\ContrainteController', 'action' => 'contrainteAction'),
+        array('route' => '/edit', 'name'=>'edit','controller' => 'App\Controllers\EditController', 'action' => 'editAction')
+     );
 
     public function findByPath($route)
     {

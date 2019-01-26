@@ -10,5 +10,5 @@ namespace App\Web;
 
 
 class Config {
- const BASE_URL = "http://localhost/FIFIDIANANA/public/index.php";
+ const BASE_URL = "http://192.168.8.160/FIFIDIANANA/public/index.php";
 } 

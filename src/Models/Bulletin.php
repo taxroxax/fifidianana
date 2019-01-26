@@ -14,13 +14,52 @@ class Bulletin {
     private $candidat;
     private $codeBulletin;
     private $status;
+    private $sys_user;
+    private $sys_compteur;
 
-    function __construct($candidat, $codeBulletin, $status)
+    function __construct($candidat, $codeBulletin, $status,$sys_user,$sys_compteur)
     {
         $this->candidat = $candidat;
         $this->codeBulletin = $codeBulletin;
         $this->status = $status;
+        $this->sys_user = $sys_user;
+        $this->sys_compteur = $sys_compteur;
     }
+
+    /**
+     * @param mixed $sys_compteur
+     */
+    public function setSysCompteur($sys_compteur)
+    {
+        $this->sys_compteur = $sys_compteur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSysCompteur()
+    {
+        return $this->sys_compteur;
+    }
+
+    /**
+     * @param mixed $sys_user
+     */
+    public function setSysUser($sys_user)
+    {
+        $this->sys_user = $sys_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSysUser()
+    {
+        return $this->sys_user;
+    }
+
+
+
 
     /**
      * @param mixed $candidat

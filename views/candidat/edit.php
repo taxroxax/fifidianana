@@ -29,7 +29,16 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="../assets/customjs/jquery.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        .panell{
+            display:flex;
+        }
+    </style>
+    <script type="text/javascript">
+
+    </script>
 </head>
 
 <body>
@@ -46,9 +55,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo \App\Web\Config::BASE_URL . '/'; ?>">
+            <a class="navbar-brand" href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>">
                 <small>
-                    <img width="80%" height="35px" src="../assets/img/Logo.png"/>
+                    <img width="80%" height="35px" src="../assets/img/Logo.png" />
                 </small>
             </a>
         </div>
@@ -59,7 +68,7 @@
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="logout"><i class="fa fa-fw fa-power-off"></i> Hiala</a>
+                        <a href="logout"><i class="fa fa-fw fa-power-off"></i> Hiala </a>
                     </li>
                 </ul>
             </li>
@@ -72,10 +81,10 @@
                         <a href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>"><i class="fa fa-fw fa-check-circle-o"></i> Fanisana</a>
                     </li>
                 <?php  elseif(\strpos($_SESSION['username'], 'Komity') !== false): ?>
-                    <li class="active">
+                    <li>
                         <a href="resultat"><i class="fa fa-fw fa-bar-chart-o "></i>Valiny</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="edit"><i class="fa fa-fw fa-dashboard"></i>Fanovana</a>
                     </li>
                 <?php endif;?>
@@ -89,45 +98,32 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-           <!-- <div class="row">
+            <!--<div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        VALIM-PIFIDIANANA <small>(<a href="resultat-global">Vokatra ankapobeny</a>)</small>
+                        FIFIDIANANA DIAKONA
+
                     </h1>
                 </div>
             </div>-->
-            <?php foreach ($quartier as $q) : ?>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        <small>FARITRA <?php echo $q; ?></small>
-                    </h1>
-                </div>
-                <?php foreach ($genre as $g): ?>
-                <div class="col-lg-6">
-                    <h4>  <?php echo $g == 'L' ?  'LEHILAHY' :  'VEHIVAVY' ?></h4>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <th>ANARANA</th>
-                            <th>VATO AZO</th>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($result[$q][$g] as $r): ?>
-                                <tr>
-                                    <td><?php echo $r['candidat']->getNom() ?></td>
-                                    <td><?php echo $r['vote'] ?></td>
-                                </tr>
-                            <?php endforeach ?>
-                            </tbody>
-                        </table>
+            <!-- /.row -->
+            <form id="frmChoix" action="" method="post">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input autocomplete="off" type="text" placeholder="CODE" name="code" class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary" type="submit">
+                            Envoyer
+                        </button>
                     </div>
                 </div>
-                    <?php endforeach;?>
-            </div>
-            <?php endforeach; ?>
-
+            </form>
             <!-- /.row -->
+
         </div>
         <!-- /.container-fluid -->
 
@@ -147,16 +143,6 @@
 <script src="../assets/js/plugins/morris/raphael.min.js"></script>
 <script src="../assets/js/plugins/morris/morris.min.js"></script>
 <script src="../assets/js/plugins/morris/morris-data.js"></script>
-
-<!-- Flot Charts JavaScript -->
-<!--[if lte IE 8]>
-<script src="../assets/js/excanvas.min.js"></script><![endif]-->
-<script src="../assets/js/plugins/flot/jquery.flot.js"></script>
-<script src="../assets/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="../assets/js/plugins/flot/jquery.flot.resize.js"></script>
-<script src="../assets/js/plugins/flot/jquery.flot.pie.js"></script>
-<script src="../assets/js/plugins/flot/flot-data.js"></script>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 </body>
 

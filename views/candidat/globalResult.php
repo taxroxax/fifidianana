@@ -55,7 +55,8 @@
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username'] ?> <b
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username'] ?>
+                     <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -89,43 +90,37 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-           <!-- <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        VALIM-PIFIDIANANA <small>(<a href="resultat-global">Vokatra ankapobeny</a>)</small>
-                    </h1>
-                </div>
-            </div>-->
-            <?php foreach ($quartier as $q) : ?>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        <small>FARITRA <?php echo $q; ?></small>
+                        VALIM-PIFIDIANANA
+                        <small>(<a href="resultat">Vokatra isam-paritra</a>)</small>
                     </h1>
                 </div>
-                <?php foreach ($genre as $g): ?>
-                <div class="col-lg-6">
-                    <h4>  <?php echo $g == 'L' ?  'LEHILAHY' :  'VEHIVAVY' ?></h4>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <th>ANARANA</th>
-                            <th>VATO AZO</th>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($result[$q][$g] as $r): ?>
-                                <tr>
-                                    <td><?php echo $r['candidat']->getNom() ?></td>
-                                    <td><?php echo $r['vote'] ?></td>
-                                </tr>
-                            <?php endforeach ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                    <?php endforeach;?>
             </div>
-            <?php endforeach; ?>
+            <div class="row">
+                <?php foreach ($genre as $g): ?>
+                    <div class="col-lg-6">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <caption> <?php echo $g == 'L' ? 'LEHILAHY' : 'VEHIVAVY' ?></caption>
+                                <thead>
+                                <th>ANARANA</th>
+                                <th>VATO AZO</th>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($list[$g] as $r): ?>
+                                    <tr>
+                                        <td><?php echo $r['candidat']->getNom() ?></td>
+                                        <td><?php echo $r['vote'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
 
             <!-- /.row -->
         </div>

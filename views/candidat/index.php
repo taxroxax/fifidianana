@@ -29,12 +29,16 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="../assets/customjs/jquery.min.js"></script>
     <![endif]-->
     <style type="text/css">
         .panell{
             display:flex;
         }
     </style>
+    <script type="text/javascript">
+
+    </script>
 </head>
 
 <body>
@@ -60,11 +64,11 @@
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> RAJAONARILALA Tahinasoa <b
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username'] ?> <b
                     class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Hiala </a>
+                    <a href="logout"><i class="fa fa-fw fa-power-off"></i> Hiala </a>
                 </li>
             </ul>
         </li>
@@ -72,12 +76,18 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
+            <?php if(\strpos($_SESSION['username'], 'Ekipa') !== false): ?>
             <li class="active">
-                <a href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>"><i class="fa fa-fw fa-check-circle-o"></i> Fifidianana</a>
+                <a href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>"><i class="fa fa-fw fa-check-circle-o"></i> Fanisana</a>
             </li>
-            <li>
-                <a href="resultat"><i class="fa fa-fw fa-dashboard"></i>Valim-pifidianana</a>
-            </li>
+            <?php  elseif(\strpos($_SESSION['username'], 'Komity') !== false): ?>
+                <li class="active">
+                    <a href="resultat"><i class="fa fa-fw fa-bar-chart-o "></i>Valiny</a>
+                </li>
+                <li>
+                    <a href="resultat"><i class="fa fa-fw fa-dashboard"></i>Fanovana</a>
+                </li>
+            <?php endif;?>
         </ul>
     </div>
     <!-- /.navbar-collapse -->
@@ -88,40 +98,36 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <div class="row">
+      <!--  <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
                     FIFIDIANANA DIAKONA
+
                 </h1>
             </div>
-        </div>
+        </div>-->
         <!-- /.row -->
-        <form action="bulletin/save" method="post">
+        <form id="frmChoix" action="bulletin/save" method="post">
             <div class="row">
                 <?php foreach ($quartier as $q) : ?>
 
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6 col-md-6" id="faritra<?php echo $q; ?>">
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <?php $nombreMale = []; ?>
-                                        <?php $nombreFemelle = []; ?>
-                                        <?php foreach ($genre as $g): ?>
-                                            <?php foreach ($list[$q][$g] as $candidat): ?>
-                                                <?php if($candidat->getGenre() == "L" ): ?>
-                                                    <?php $nombreMale[] = count($candidat->getRang())  ?>
-                                                <?php endif; ?>
-                                                <?php if($candidat->getGenre() == "V" ): ?>
-                                                    <?php $nombreFemelle[] = count($candidat->getRang())  ?>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-
+                                        <?php foreach($contrainte[$q-1] as $c): ?>
+                                            <?php if($c->getGenre() == "L" ): ?>
+                                                <?php $nombreMale = $c->getNombreMax();  ?>
+                                            <?php endif; ?>
+                                            <?php if($c->getGenre() == "V" ): ?>
+                                                <?php $nombreFemelle = $c->getNombreMax();  ?>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
-                                        <button type="button" class="btn btn-xs btn-success">L: Lahy (<?php echo array_sum($nombreMale); ?> isa) </button>
-                                        <button type="button" class="btn btn-xs btn-info">V: Vavy (<?php echo array_sum($nombreFemelle); ?> isa) </button>
-                                        <br>
-                                        <!--                                        <i class="fa fa-comments fa-5x"></i>-->
+                                        <button type="button" class="btn btn-xs btn-success" id="nombre_femelle" >Vavy : (<?php echo $nombreFemelle; ?> isa)
+                                        <button type="button" class="btn btn-xs btn-info" id="nombre_male">Lahy : (<?php echo $nombreMale; ?> isa) </button>
+                                       <!-- <br>
+                                         <i class="fa fa-comments fa-3x">mihoatra</i>-->
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $q; ?></div>
@@ -136,16 +142,15 @@
                                             <?php foreach ($list[$q][$g] as $candidat): ?>
                                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                                     <?php echo $candidat->getGenre() . $candidat->getRang(); ?>
-                                                    <input name="status[<?php echo $q;?>][<?php echo $candidat->getId();?>]"
+                                                    <input id="max_checked_<?php echo $g;?><?php echo $q;?>" name="status[<?php echo $q;?>][<?php echo $candidat->getId();?>]"
                                                         type="checkbox">
                                                 </div>
-
                                             <?php endforeach; ?>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="#faritra<?php echo $q+1; ?>">
                                 <div class="panel-footer">
                                     <span class="pull-left">Manaraka</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -172,9 +177,7 @@
                 </div>
             </div>
         </form>
-
         <!-- /.row -->
-
 
     </div>
     <!-- /.container-fluid -->

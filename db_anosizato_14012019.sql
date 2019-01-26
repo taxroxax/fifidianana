@@ -2,7 +2,8 @@
 SQLyog Ultimate v9.10 
 MySQL - 5.6.17 : Database - db_anosizato
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -18,15 +19,15 @@ DROP TABLE IF EXISTS `bulletin`;
 
 CREATE TABLE `bulletin` (
   `ID_CANDIDAT` int(11) NOT NULL AUTO_INCREMENT,
-  `CODE_BULLETIN` int(11) NOT NULL,
+  `CODE_BULLETIN` varchar(11) NOT NULL,
   `STATUS` varchar(1) DEFAULT NULL,
+  `SYS_USER_ID` int(11) NOT NULL,
+  `SYS_COMPTEUR` int(11) NOT NULL,
   PRIMARY KEY (`ID_CANDIDAT`,`CODE_BULLETIN`),
   CONSTRAINT `FK_BULLETIN_ID_CANDIDAT` FOREIGN KEY (`ID_CANDIDAT`) REFERENCES `candidat` (`ID_CANDIDAT`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `bulletin` */
-
-insert  into `bulletin`(`ID_CANDIDAT`,`CODE_BULLETIN`,`STATUS`) values (1,3,'1'),(11,0,'1'),(11,1,'1'),(13,0,'1'),(13,1,'1'),(18,3,'1'),(27,0,'1'),(27,1,'1'),(29,0,'1'),(29,1,'1'),(31,3,'1'),(42,0,'1'),(42,1,'1'),(44,0,'1'),(44,1,'1'),(51,3,'1'),(57,0,'1'),(57,1,'1'),(58,0,'1'),(58,1,'1'),(63,3,'1'),(66,0,'1'),(66,1,'1'),(73,3,'1'),(74,0,'1'),(74,1,'1'),(78,3,'1'),(90,3,'1'),(91,3,'1'),(109,3,'1'),(115,3,'1'),(124,3,'1');
 
 /*Table structure for table `candidat` */
 
@@ -37,14 +38,14 @@ CREATE TABLE `candidat` (
   `CODE_QUARTIER` int(11) DEFAULT NULL,
   `GENRE` varchar(1) DEFAULT NULL,
   `RANG` int(11) DEFAULT NULL,
-  `NUM_CARTE` int(11) DEFAULT NULL,
+  `NUM_CARTE` varchar(11) DEFAULT NULL,
   `NOM` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`ID_CANDIDAT`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=448 DEFAULT CHARSET=utf8;
 
 /*Data for the table `candidat` */
 
-insert  into `candidat`(`ID_CANDIDAT`,`CODE_QUARTIER`,`GENRE`,`RANG`,`NUM_CARTE`,`NOM`) values (1,1,'L',1,1053,'RAHAJANIRINA Yves'),(2,1,'L',2,1110,'RAKOTOSON Rolland Tour'),(3,1,'L',3,1444,'RALAIARILIVA Jasnot Friedopher'),(4,1,'L',4,1001,'RANDRIAMAHAZO Jean'),(5,1,'L',5,1030,'RASOLOARIJAONA Simon'),(6,1,'L',6,1276,'ANDRIAMIRIJA Jacob'),(7,1,'L',7,1163,'ANDRIANANTENAINA Nirina'),(8,1,'L',8,1194,'ANDRIATSITRATRINIHAFA Jean Luc Nantenaina'),(9,1,'L',9,1082,'RADOMANANA Arinoely'),(10,1,'L',10,1107,'RAFALIMANANA Marka Jean'),(11,1,'L',11,1069,'RAHERINJATOVO Hasindray Jaona'),(12,1,'L',12,1020,'RAKOTONDRAFARA David'),(13,1,'L',13,1011,'RAKOTOZAFY Henri'),(14,1,'L',14,1487,'ANDRIAMIHANTA Tsimbason Tantely'),(15,1,'L',15,1267,'RAHOLIARISOA Heritiana Mamisoa'),(16,1,'L',16,1127,'RASOLOARINAIVO Fredo Dayan'),(17,1,'V',1,1238,'ANDRIAMBALA Enintsoa'),(18,1,'V',2,1341,'MIANDRISOA Odette'),(19,1,'V',3,1120,'RAHARINIRINA Hantamalala Jeanine'),(20,1,'V',4,1332,'RALALAMANANA Liliane'),(21,1,'V',5,1506,'RAMANGALAHY Hanitrasoa Hoby'),(22,1,'V',6,1449,'RASOARIVAO H?l?ne'),(23,1,'V',7,2048,'RAVAOARIVELO Oliva'),(24,1,'V',8,2172,'RAZAFINDRAZAKA Soloarinosy'),(25,1,'V',9,2115,'RAVOLOLONIRINAHARISOA Evelyne '),(26,1,'V',10,2364,'RAKOTONIAINA Felasoa Alpha Romy'),(27,1,'V',11,2196,'RATSITRATRINIHAFA Jimminette Narisoa'),(28,1,'V',12,2215,'RATSITRATRINIHAFA Narisoa Claudette'),(29,1,'V',13,2260,'RAZAFINTSOA Gis?le Lucie'),(30,2,'L',1,2150,'RAHAINGOARISON Hery Nirina'),(31,2,'L',2,2458,'RAHARISON Solofoniaina Vonjisoa'),(32,2,'L',3,2288,'RAKOTO ANDRIAMAVO'),(33,2,'L',4,2311,'RAKOTOSON Haja Eric'),(34,2,'L',5,2619,'RAKOTONDRAZAFY Andritiana'),(35,2,'L',6,2044,'RAMAROLAHY Laurent'),(36,2,'L',7,2200,'RANDRIANARIVO James'),(37,2,'L',8,2631,'RAZAFINDRAIBE Christian Bien Aim'),(38,2,'L',9,2613,'RAZANAKOTO Andrianantenaina'),(39,2,'L',10,2999,'TRIMOFOLOALINA RAKOTO Mahefa'),(40,2,'L',11,3249,'ANDRIAMAVO Fanilo Ranjanirina'),(41,2,'L',12,3137,'ANDRIAMIADANARIVO Mamitahiry'),(42,2,'L',13,3089,'RAFANOMEZANTSOA Alexandre'),(43,2,'L',14,3001,'RAMIHARISON Charles'),(44,2,'L',15,3040,'RANDRIANIRINA Liva Herisolo'),(45,2,'L',16,3245,'ANDRIANIRIMBAHOAKA Anjaratiana'),(46,2,'L',17,3222,'HERIFANOMEZANA Lovasoa'),(47,2,'L',18,3018,'RAMIARASON Livarizaka'),(48,2,'V',1,3004,'ANDRIAMAVO Meva Tsimialonarivo'),(49,2,'V',2,3263,'RAMAROSON Voahangy Lucie'),(50,2,'V',3,3085,'RAMBELOSON Sahondra Vololona'),(51,2,'V',4,3233,'RANDRIANANDRASANA Fanjamalala'),(52,2,'V',5,3005,'RAZAFIARISOA Appoline'),(53,2,'V',6,4068,'RAZANAJATOVO Volana'),(54,2,'V',7,4221,'RAKOTOMANANTSOA Verotiana'),(55,2,'V',8,4125,'RANDRIANANDRASANA Noeline Aim'),(56,2,'V',9,4110,'RASAMOELINA Holinirina'),(57,2,'V',10,4112,'RASOAZANAMANANA Perline'),(58,2,'V',11,4024,'RAVAOSOLONIAINA Esther'),(59,3,'L',1,4627,'RABEARIMANANA Jean Gilbert'),(60,3,'L',2,4338,'RANDRIAMANANA Joseph'),(61,3,'L',3,5168,'RANDRIANARIJAONA Livaharilanto'),(62,3,'L',4,5115,'RANDRIANJAFY Jean Paul'),(63,3,'L',5,5095,'RAZAFINDRAIBE Zo'),(64,3,'L',6,5112,'RAZAFINJATOVO Daniel'),(65,3,'L',7,5332,'RABARISON Rodin'),(66,3,'L',8,5075,'RAKOTONDRAMANANA Jean Elis'),(67,3,'V',1,5107,'RAHARIMALALA Christine'),(68,3,'V',2,5084,'RAMANGALAHY Harisoa Michelle'),(69,3,'V',3,5164,'RANOROARIVELO Vololomboahangy'),(70,3,'V',4,5302,'RAVOAJANAHARY Rinah'),(71,3,'V',5,5304,'RAVONIARIMANANA Lantosoa Mamy'),(72,3,'V',6,5018,'RAVAOARINELINA Angeline'),(73,3,'V',7,5316,'RAVAOHELIVONY Fanja Liliane'),(74,3,'V',8,5999,'RAVAOARIMANGA Fanja Noely'),(75,4,'L',1,6094,'RAJOELISON Justin'),(76,4,'L',2,6289,'RAJOELISON Nantenaina Zo'),(77,4,'L',3,6080,'RAKOTOMANIRAKA Andriamamenosoa'),(78,4,'L',4,6028,'RAMAHENINTSOA Lovasoa William'),(79,4,'L',5,6059,'RANAIVO Norbert Justin'),(80,4,'L',6,6046,'MAMINIRINA Jean Claude'),(81,4,'L',7,6239,'RAKOTONDRAZAKA Rivo Philibert'),(82,4,'L',8,6167,'RANDRIAMIHARISOA Mamitiana Belzard'),(83,4,'V',1,1039,'RADAFIARIVONINOMENJANAHARY Misaeline'),(84,4,'V',2,1370,'RAJAOBELISON Rivo Herilanto'),(85,4,'V',3,1108,'RAKOTOSON Gis?le'),(86,4,'V',4,1012,'RANOROVOLOLONA Sahondra'),(87,4,'V',5,1031,'RASOANIRINA Josephine Odette'),(88,4,'V',6,1021,'RAHARISOA Lalaonirina Julie Jo?lle'),(89,4,'V',7,1375,'NIVOHANITRARIMISA Fanjanirina'),(90,4,'V',8,1362,'RAHARINIRINA Lucky Odette '),(91,5,'L',1,1467,'MAMINIAINA Fifaliana Jo?l Nirina'),(92,5,'L',2,1246,'RABESON Janvier'),(93,5,'L',3,1164,'RAKOTOARIMANANA Th?ophile'),(94,5,'L',4,1290,'RAKOTONANAHARY Emile'),(95,5,'L',5,1268,'RADIMBISON Falimanana'),(96,5,'L',6,2049,'RASOLOFONIRINA Tantely Thierry'),(97,5,'L',7,2173,'RAVOATRA Jean de Dieu'),(98,5,'L',8,2365,'RAVOATRANIRINA Fetraniaina'),(99,5,'L',9,2219,'RAJAONARISOA Donn'),(100,5,'L',10,2028,'RAMAHATANA Fenomanantsoa'),(101,5,'V',1,2152,'RAHARIMALALA Marie Justine Yvonne'),(102,5,'V',2,2197,'RANAIVOZANANY Yollandine Bien Aim'),(103,5,'V',3,2373,'RAOBELISON Vololona'),(104,5,'V',4,2514,'RASOANIRINA Julie Suzanne Hermeline'),(105,5,'V',5,2045,'RAZAFINDRAKETAKA Ernestine'),(106,5,'V',6,2340,'RAZANADRAMANGA'),(107,5,'V',7,2216,'RAZANAJAZA Anne Marie Alice Sissi'),(108,5,'V',8,2005,'NASOLOANTRA Lalao Hasina'),(109,5,'V',9,2498,'RAKOTONIAINA Miandrisoa Haingonirina'),(110,5,'V',10,3002,'RAZAFINIRINA Voahirana Claudia'),(111,6,'L',1,3041,'ANDRIAMITANDRINA Naivosoa Voninjaka'),(112,6,'L',2,3250,'RALAIARILIVA Ndriana Mamy'),(113,6,'L',3,3246,'RATSITOARIMAHEFA Lalatiana'),(114,6,'L',4,3086,'RATSITRATRINIHAFA Andry Jaona'),(115,6,'L',5,3232,'RASOLOARINAIVO Rennel Antonny'),(116,6,'L',6,3223,'RAHARIVELOTANDRAMAHEFA Rivoary Niaina'),(117,6,'L',7,3297,'RAJAONARIVELO ANDRIANARISOA Allain Olivier'),(118,6,'L',8,4240,'RAKOTONIAINA Radosolo Mickael'),(119,6,'V',1,4314,'RAHARIMANANA Suzette Honorine'),(120,6,'V',2,4222,'RALAIARILIVA Mamie Jeanne'),(121,6,'V',3,4069,'RAMANANTENASOA Sabine'),(122,6,'V',4,4252,'RASOARIVONY Solomalala Robine'),(123,6,'V',5,4334,'RAVAOARIMANGA Marie Melanie'),(124,6,'V',6,4234,'RAVALOSON Minorila');
+insert  into `candidat`(`ID_CANDIDAT`,`CODE_QUARTIER`,`GENRE`,`RANG`,`NUM_CARTE`,`NOM`) values (302,1,'V',1,'1043','MIANDRISOA Odette'),(303,1,'V',2,'1329','NIVOHANITRARIMISA Fanjanirina'),(304,1,'V',3,'1134','RAHARINIRINA Hantamalala Jeanine'),(305,1,'V',4,'1138','RAHOLISOA Berthine'),(306,1,'V',5,'1490','RAKOTONDRAZAFY Rina Lalaina'),(307,1,'V',6,'1373','RALISOA  Honorine'),(308,1,'V',7,'1010','RAMANGALAHY Hanitrasoa Hoby'),(309,1,'V',8,'1545','RANDRIANARIVO  Onintsoa '),(310,1,'V',9,'1498','RANDRIANARIVONY Bodoarivelo Farasoa'),(311,1,'V',10,'1249','RASOAMAMPIANINA Marie Viviane'),(312,1,'V',11,'1081','RASOARIVAO Hélène'),(313,1,'V',12,'1423','RASOAZANANY Fitahiana'),(314,1,'V',13,'1218','RAZA FINDRAZAKA Soloarinosy'),(315,1,'V',14,'1271','RAZAFIARISOA Hanitriniaina N.'),(316,1,'V',15,'1770','RAZAFINTSOA Gisèle Lucie'),(317,1,'L',1,'1328','MAMINIRINA Jean Claude'),(318,1,'L',2,'1075','RAHAJAMANANA Onjaniaina'),(319,1,'L',3,'1019','RAHERINJATOVO Hasindray Jaona'),(320,1,'L',4,'1005','RAHOLIARISOA Heritiana Mamisoa'),(321,1,'L',5,'1137','RAKOTONDRAFARA David'),(322,1,'L',6,'1248','RAKOTONDRAZAFY  Landiniaina'),(323,1,'L',7,'1009','RAKOTOSON Roland Touré'),(324,1,'L',8,'1246','RALAIARITERA Solonirina Nomena'),(325,1,'L',9,'1001','RANDRIAMAHAZO Jean'),(326,1,'L',10,'1489','RANDRIANASOLO Mahaleo Harijao'),(327,1,'L',11,'1544','RASOLOARINAIVO Herisoa Fredo Dayan'),(328,1,'L',12,'1148','RASOLONIAINA Adrien'),(329,1,'L',13,'1065','RATSIFERA RAKOTOMALALA Jean Henri'),(330,2,'V',1,'2652','ANDRIAMAVO Meva Tsimialonarivo'),(331,2,'V',2,'2048','ANDRIANJAKANOMENJANAHARY Hary '),(332,2,'V',3,'2540','MINONTSOA Nivosambatra'),(333,2,'V',4,'2254','RAKOTOMANANTSOA Verotiana'),(334,2,'V',5,'2417','RAMAROSON Lucie'),(335,2,'V',6,'2149','RAMBELOSON Sahondra Vololona'),(336,2,'V',7,'2106','RANDRIANANDRASANA Fanjamalala'),(337,2,'V',8,'2487','RASAMOELINA Holinirina'),(338,2,'V',9,'2213','RASOAHANITRINIALA Volatiana'),(339,2,'V',10,'2293','RASOANOMENJANAHARY Lisy'),(340,2,'V',11,'2268','RASOAZANAKOLONA Lily'),(341,2,'V',12,'2265','RASOAZANAMANANA Perline'),(342,2,'V',13,'2444','RAVAO Madeleine'),(343,2,'V',14,'2056','RAVAOSOLONIAINA Esther'),(344,2,'V',15,'2041','RAZAFIARISOA Andoniaina'),(345,2,'V',16,'2314','RAZAFIARISOA Julienne'),(346,2,'V',17,'2590','RAZANAJATOVO Volana Hasina'),(347,2,'L',1,'6206','ANDRIAMIADANARIVO Mamitahiry'),(348,2,'L',2,'2569','RAHAINGOARISON Hery Nirina'),(349,2,'L',3,'2292','RAHARISON Solofoniaina Vonjisoa'),(350,2,'L',4,'2010','RAHERY FANOMEZANA Lovasoa'),(351,2,'L',5,'2090','RAJAOBELINA Christian'),(352,2,'L',6,'2326','RAKOTONDRAZAFY Andritiana'),(353,2,'L',7,'2589*','RAKOTOSON Haja Eric'),(354,2,'L',8,'2055','RAMAROLAHY Laurent'),(355,2,'L',9,'2045','RAMIARASON Livaharizaka'),(356,2,'L',10,'2015','RANDRIAMIARANA Fidimanantsoa'),(357,2,'L',11,'2105','RANDRIANARIVO James'),(358,2,'L',12,'2486','RANDRIANIRINA Liva Herisolo'),(359,2,'L',13,'2201','RANDRIANTSEHENO Harinaivo F. H.'),(360,2,'L',14,'2058','RAVELONJANAHARY Gaston Laurent'),(361,2,'L',15,'2148','RAZAFINDRAIBE Christian Bien Aimé'),(362,2,'L',16,'2212','RAZAFINIMANANA Mamy Fils Herman'),(363,2,'L',17,'2416','RAZANAKOTO Andrianantenaina'),(364,2,'L',18,'2253','TRIMOFOLOALINA Rakotomahefa'),(365,3,'V',1,'3098','ANDRIAMIHAJA Jeanne Christine David'),(366,3,'V',2,'3086','RAHARIMALALA Christine'),(367,3,'V',3,'3045','RAHELIARISOA Mariette'),(368,3,'V',4,'3137','RAMALALATIANA Hortense'),(369,3,'V',5,'3105','RAMANGALAHY Harisoa Michèle'),(370,3,'V',6,'3002','RANOROARIVELO Vololomboahangy'),(371,3,'V',7,'3172','RAVAOARIMANGA Fanja Noely'),(372,3,'V',8,'3145','RAVAOARINELINA Angeline'),(373,3,'V',9,'3229','RAVAOHELIVONY Liliane Fanjaniaina'),(374,3,'V',10,'3015','RAVONIARIMANANA Lantosoa Mamy'),(375,3,'V',11,'3314','RAZAFIMBELO Josée Safidy Sambatra'),(376,3,'V',12,'3332','RAZAKANAIVO Liva Nirina'),(377,3,'L',1,'3014','RABEARIMANANA Jean Gilbert'),(378,3,'L',2,'3039','RAKOTOARIMALALA David '),(379,3,'L',3,'3136','RAKOTOARIMANANA Eugène'),(380,3,'L',4,'3044','RAKOTOARINISA Clovis Eugène'),(381,3,'L',5,'3063','RAKOTONDRAMANANA Jean Elisé'),(382,3,'L',6,'3097','RAKOTONIRINA Jean Noel'),(383,3,'L',7,'3083','RALALAMANANA Tahinasoa'),(384,3,'L',8,'3246','RANDRIANAIVOJAONA  Andrianantenaina'),(385,3,'L',9,'3081','RAZAFINDRAIBE Zo'),(386,3,'L',10,'3104','RAZAFINJATOVO Daniel'),(387,4,'V',1,'4250','FANJANIRINA Lanto Claudine'),(388,4,'V',2,'4006','RADAFIARIVONY N. Misaelina'),(389,4,'V',3,'4055','RAHARINANTENAINA Vola'),(390,4,'V',4,'4088','RAHARINIRNA Lucky Odette'),(391,4,'V',5,'4078','RAHARISOA Lalao Nirina Julie Joelle'),(392,4,'V',6,'4082','RAHOLIARINIRINA Vero Hasina'),(393,4,'V',7,'4285','RAJAOBELISON Rivo Herilantosoa'),(394,4,'V',8,'4002','RAKOTOSON Gisèle'),(395,4,'V',9,'4360','RANOROVOLOLONA Sahondra'),(396,4,'V',10,'4314','RAZANARINOLY Soanihoavy'),(397,5,'V',1,'1125','RAFARASOANIAINA Lantomalala Saholy'),(398,5,'V',2,'5411','RANAIVOSON Andriambala Niry Hasina'),(399,5,'V',3,'5290','RANAIVOZANANY Yolandine Bien Aimée'),(400,5,'V',4,'2021','RANDRIANANDRASANA Noeline Aimée'),(401,5,'V',5,'5346','RAOBELISON Vololona'),(402,5,'V',6,'5362','RASOLOHANTA Heriniaina Evelina'),(403,5,'V',7,'5070','RAZAFINDRAKETAKA Ernestine'),(404,5,'V',8,'5044','RAZAFINDRASOLO Juliette'),(405,5,'V',9,'5350','RAZAFINIMARO Viviane Rosette'),(406,5,'V',10,'5382','RAZAFINIRINA Voahirana Claudia'),(407,5,'V',11,'5398','RAZANAJAZA Anne Marie Alice Sissi'),(408,5,'L',1,'1124','ANDRIANANTENAINA Nirina Andry'),(409,5,'L',2,'5363','MAMINIAINA Joel Fifaliana'),(410,5,'L',3,'5043','RABESON Janvier'),(411,5,'L',4,'5339*','RAJAONARISON Donné'),(412,5,'L',5,'5361','RAKOTOARIMANANA Théophile'),(413,5,'L',6,'5174','RAKOTONIAINA Fanomezantsoa Philibert'),(414,5,'L',7,'5144','RAMARSON Andriamanana Fitahiana'),(415,5,'L',8,'5315','RANDIMBISON Falimanana'),(416,5,'L',9,'5410','RANDRIANARIJAONA Dina Nambinintsoa'),(417,5,'L',10,'5067','RASOLOFONIRINA Tantely Thierry'),(418,6,'V',1,'6051','RAFANJARISOA Emelie'),(419,6,'V',2,'6035','RAHANTAVELONANTENAINA Lalao'),(420,6,'V',3,'6002','RAHARIMANANA Suzette'),(421,6,'V',4,'6183','RAHARIVELONTANDRAMAHEFA Mboahangy '),(422,6,'V',5,'6105','RAKOTOARISOA Nivohanta Harilala Mialy'),(423,6,'V',6,'6196*','RAKOTONIRINA Heinz Anita'),(424,6,'V',7,'6085','RANAIVOSON Ny Domoina '),(425,6,'V',8,'6010','RATOMPOZANAKA Mbolatiana'),(426,6,'V',9,'6144','RAVALOSON Minorila'),(427,6,'V',10,'1213','RAVAOARIVELO Oliva'),(428,6,'V',11,'6245','RAZANAJAO Andoniaina Domoina'),(429,6,'L',1,'6197','ANDRIAMIARY Harrison Daniel'),(430,6,'L',2,'6004','ANDRIAMITANDRINA Hariniavo Fanevasoa'),(431,6,'L',3,'6001','ANDRIAMITANDRINA Naivosoa'),(432,6,'L',4,'6145','ANDRIANJAKATOMPOMAENINA Herinandrasana'),(433,6,'L',5,'6104','RAHARIVELOTANDRAMAHEFA Rivoary'),(434,6,'L',6,'6143','RAJAONARIVELO A. Allain Olivier'),(435,6,'L',7,'6195*','RAKOTONDRAZAKA Fabien'),(436,6,'L',8,'6182','RAKOTONIAINA Radoharimisa Michel'),(437,6,'L',9,'6244','RASOLOARINAIVO Andrintsoa Rennel Antonny'),(438,6,'L',10,'6195','RATSITOARIMAHEFA Lalatiana'),(439,6,'L',11,'6247','RATSITRATRINIHAFA Andry Jaona'),(440,4,'L',1,'4181','RAJOELISON Justin'),(441,4,'L',2,'4081','RAJOELISON Nantenaina Zo'),(442,4,'L',3,'4001','RAKOTOMANIRAKA Andriamamenosoa'),(443,4,'L',4,'4087','RAKOTONDRAZAKA Rivo Philibert'),(444,4,'L',5,'4108','RAMAHENINTSOA Lovasoa William'),(445,4,'L',6,'4094','RANDRIAMANANTENA Franck Elizard'),(446,4,'L',7,'4077','RANDRIAMIHARISOA Mamitiana Belzard'),(447,4,'L',8,'4054','RAZANAJATOVO Jean Michel');
 
 /*Table structure for table `evenement` */
 
@@ -163,6 +164,39 @@ CREATE TABLE `quartier` (
 /*Data for the table `quartier` */
 
 insert  into `quartier`(`IdQuartier`,`LibelleQuartier`) values (1,'FARITRA 1'),(2,'FARITRA 2'),(3,'FARITRA 3'),(4,'FARITRA 4'),(5,'FARITRA 5'),(6,'FARITRA 6'),(7,'ZANAKA AM-PIELEZANA');
+
+/*Table structure for table `sys_contrainte` */
+
+DROP TABLE IF EXISTS `sys_contrainte`;
+
+CREATE TABLE `sys_contrainte` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `GENRE` varchar(2) DEFAULT NULL,
+  `QUARTIER` int(11) DEFAULT NULL,
+  `NOMBRE_MAX` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+/*Data for the table `sys_contrainte` */
+
+insert  into `sys_contrainte`(`ID`,`GENRE`,`QUARTIER`,`NOMBRE_MAX`) values (1,'L',1,12),(2,'V',1,12),(3,'L',2,12),(4,'V',2,12),(5,'L',3,8),(6,'V',3,8),(7,'L',4,10),(8,'V',4,10),(9,'L',5,7),(10,'V',5,7),(11,'L',6,6),(12,'V',6,6);
+
+/*Table structure for table `sys_user` */
+
+DROP TABLE IF EXISTS `sys_user`;
+
+CREATE TABLE `sys_user` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(50) DEFAULT NULL,
+  `LOGIN` varchar(100) DEFAULT NULL,
+  `PASSWORD` varchar(100) DEFAULT NULL,
+  `INPUT_NUMBER` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Data for the table `sys_user` */
+
+insert  into `sys_user`(`ID`,`NAME`,`LOGIN`,`PASSWORD`,`INPUT_NUMBER`) values (1,'Ekipa01','Equipe01','nrz',5),(2,'Ekipa02','Equipe02','nrz2',2),(3,'Ekipa03','Equipe03','nrz3',4),(4,'Komity','Komity','Komity',9999);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
