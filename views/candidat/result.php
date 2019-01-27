@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link href="../assets/img/AHebrona.png" rel="icon">
 
-    <title>FIANGONANA ANISOZATO HEBRONA</title>
+    <title>FIANGONANA ANISIZATO HEBRONA</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo \App\Web\Config::BASE_URL . '/'; ?>">
+            <a class="navbar-brand" href="#">
                 <small>
                     <img width="80%" height="35px" src="../assets/img/Logo.png"/>
                 </small>
@@ -72,11 +72,17 @@
                         <a href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>"><i class="fa fa-fw fa-check-circle-o"></i> Fanisana</a>
                     </li>
                 <?php  elseif(\strpos($_SESSION['username'], 'Komity') !== false): ?>
-                    <li class="active">
-                        <a href="resultat"><i class="fa fa-fw fa-bar-chart-o "></i>Valiny</a>
+                    <li  class="active">
+                        <a href="resultat-global"><i class="fa fa-fw fa-bar-chart-o "></i>Valiny</a>
                     </li>
                     <li>
-                        <a href="edit"><i class="fa fa-fw fa-dashboard"></i>Fanovana</a>
+                        <a href="vote-perdu"><i class="fa fa-fw fa-trash-o"></i>Vato maty </a>
+                    </li>
+                    <li>
+                        <a href="progression"><i class="fa fa-fw fa-arrow-circle-down"></i>Saisie</a>
+                    </li>
+                    <li>
+                        <a href="edit"><i class="fa fa-fw fa-edit"></i>Fanovana</a>
                     </li>
                 <?php endif;?>
             </ul>
@@ -96,6 +102,7 @@
                     </h1>
                 </div>
             </div>-->
+            <?php if(!empty($result)): ?>
             <?php foreach ($quartier as $q) : ?>
             <div class="row">
                 <div class="col-lg-12">
@@ -126,7 +133,10 @@
                     <?php endforeach;?>
             </div>
             <?php endforeach; ?>
-
+            <?php endif; ?>
+            <?php if(!empty($message)): ?>
+                <?php echo $message; ?>
+            <?php endif; ?>
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->

@@ -24,7 +24,13 @@ class LoginController extends Controller
                 session_start();
                 $_SESSION['username'] = $user->getName();
                 $_SESSION['login'] = $user->getLogin();
-                return $this->redirect('candidat.list');
+                if(\strpos($_SESSION['username'], 'Ekipa') !== false){
+                    return $this->redirect('candidat.list');
+                }
+                elseif(\strpos($_SESSION['username'], 'Komity') !== false){
+                    return $this->redirect('resultat.show');
+                }
+
             } else {
                 return $this->render('login/login', array('message' => 'Tsy mety an'));
             }

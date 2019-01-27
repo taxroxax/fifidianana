@@ -29,16 +29,12 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <script src="../assets/customjs/jquery.min.js"></script>
     <![endif]-->
     <style type="text/css">
         .panell{
             display:flex;
         }
     </style>
-    <script type="text/javascript">
-
-    </script>
 </head>
 
 <body>
@@ -55,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?php echo \App\Web\Config::BASE_URL.'/'; ?>">
+        <a class="navbar-brand" href="#">
             <small>
                 <img width="80%" height="35px" src="../assets/img/Logo.png" />
             </small>
@@ -84,8 +80,11 @@
                 <li class="active">
                     <a href="resultat"><i class="fa fa-fw fa-bar-chart-o "></i>Valiny</a>
                 </li>
+                <li class="active">
+                    <a href="progression"><i class="fa fa-fw fa-arrow-circle-down"></i>Saisie</a>
+                </li>
                 <li>
-                    <a href="resultat"><i class="fa fa-fw fa-dashboard"></i>Fanovana</a>
+                    <a href="resultat"><i class="fa fa-fw fa-edit"></i>Fanovana</a>
                 </li>
             <?php endif;?>
         </ul>
@@ -98,17 +97,10 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-      <!--  <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    FIFIDIANANA DIAKONA
-
-                </h1>
-            </div>
-        </div>-->
         <!-- /.row -->
         <form id="frmChoix" action="bulletin/save" method="post">
             <div class="row">
+                <?php $maxParQuartier = array(); $nombreFemelle = 0; ?>
                 <?php foreach ($quartier as $q) : ?>
 
                     <div class="col-lg-6 col-md-6" id="faritra<?php echo $q; ?>">
@@ -124,10 +116,13 @@
                                                 <?php $nombreFemelle = $c->getNombreMax();  ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
-                                        <button type="button" class="btn btn-xs btn-success" id="nombre_femelle" >Vavy : (<?php echo $nombreFemelle; ?> isa)
+                                        <?php $maxParQuartier[] = $nombreFemelle;?>
+                                        <input type="hidden" name="contrainte" id="contrainte<?php echo $q ?>" value="<?php echo $nombreMale; ?>">
+                                        <input type="hidden" value="<?php echo $nombreFemelle;?>" name="maxParQuartier[<?php echo $q;?>]">
+                                        <button type="button" class="btn btn-xs btn-success" id="nombre_femelle" >Vavy : (<?php echo $nombreFemelle; ?> isa)  </button>
                                         <button type="button" class="btn btn-xs btn-info" id="nombre_male">Lahy : (<?php echo $nombreMale; ?> isa) </button>
-                                       <!-- <br>
-                                         <i class="fa fa-comments fa-3x">mihoatra</i>-->
+                                       <!--  <br>
+                                         <i class="fa fa-comments fa-1x" id="information"></i>-->
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $q; ?></div>
@@ -142,8 +137,10 @@
                                             <?php foreach ($list[$q][$g] as $candidat): ?>
                                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                                     <?php echo $candidat->getGenre() . $candidat->getRang(); ?>
-                                                    <input id="max_checked_<?php echo $g;?><?php echo $q;?>" name="status[<?php echo $q;?>][<?php echo $candidat->getId();?>]"
-                                                        type="checkbox">
+                                                    <!--<input onclick="getRealistic()" value="max_checked_<?php /*echo $g;*/?><?php /*echo $q;*/?><?php /*echo $candidat->getRang(); */?>" id="max_checked_<?php /*echo $g;*/?><?php /*echo $q;*/?><?php /*echo $candidat->getRang(); */?>" name="status[<?php /*echo $q;*/?>][<?php /*echo $candidat->getId();*/?>]"
+                                                        type="checkbox">-->
+                                                    <input name="status[<?php echo $q;?>][<?php echo $candidat->getGenre(); ?>][<?php echo $candidat->getId();?>]"
+                                                           type="checkbox">
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
@@ -166,7 +163,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <input autocomplete="off" type="text" placeholder="CODE" name="code" class="form-control">
+                        <input required="required" autocomplete="off" type="text" placeholder="CODE" name="code" class="form-control">
                     </div>
 
                 </div>
@@ -196,9 +193,55 @@
 
 <!-- Morris Charts JavaScript -->
 <script src="../assets/js/plugins/morris/raphael.min.js"></script>
-<script src="../assets/js/plugins/morris/morris.min.js"></script>
-<script src="../assets/js/plugins/morris/morris-data.js"></script>
+<script src="../assets/js/plugins/morris/morris.min.js"></script><!--
+<script src="../assets/js/plugins/morris/morris-data.js"></script>-->
+<script src="../assets/customjs/jquery.min.js"></script>
+<script type="text/javascript">
+    var nbQuartier = 7;
+    var genre = ["L","V"];
+    var getCarrer = new Array();
+    var contrainte = 0;
+    var i;
+    var j;
+    genre.forEach(function(element) {
+        for (i = 1; i < nbQuartier; i++) {
+            var id = "contrainte"+i;
+            contrainte = document.getElementById(id).value;
+            console.log("F"+i+"="+contrainte);
+            for(j = 1;j < contrainte; j++){
+                var id_checked = "max_checked_"+element+i+j;
 
+                getCarrer[id_checked] = parseInt(1);
+
+                console.log(id_checked);
+            }
+        }
+    });
+    function getRealistic(nombreMax)
+    {
+        var rTotal = 0;
+        var max_checked = nombreMax;
+        console.log(nombreMax);
+      //  var selectedRealistic = document.forms["frmChoix"];
+        var selectedRealistic = $( "form input:checkbox" );
+       // console.log(selectedRealistic);
+        for (var sel = 0; sel < selectedRealistic.length; sel++)
+        {
+          //  console.log(selectedRealistic[sel].value);
+            if (selectedRealistic[sel].checked)
+                rTotal += getCareer[selectedRealistic[sel].value]
+        }
+/*
+        if(rTotal > max_checked){
+            document.getElementById("information").innerHTML = rTotal+ "/"+ max_checked +"mihoatra"
+        }
+        if(rTotal <= max_checked){
+            document.getElementById("information").innerHTML = ""
+        }*/
+    }
+
+
+</script>
 </body>
 
 </html>

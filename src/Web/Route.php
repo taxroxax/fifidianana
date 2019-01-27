@@ -22,7 +22,11 @@ class Route
         array('route' => '/resultat-global', 'name'=>'resultat.global','controller' => 'App\Controllers\GlobalResultController', 'action' => 'globalResult'),
         array('route' => '/logout', 'name'=>'logout','controller' => 'App\Controllers\LoginController', 'action' => 'logout'),
         array('route' => '/contrainte', 'name'=>'contrainte','controller' => 'App\Controllers\ContrainteController', 'action' => 'contrainteAction'),
-        array('route' => '/edit', 'name'=>'edit','controller' => 'App\Controllers\EditController', 'action' => 'editAction')
+        array('route' => '/edit', 'name'=>'edit','controller' => 'App\Controllers\EditController', 'action' => 'editAction'),
+        array('route' => '/verification', 'name'=>'verification','controller' => 'App\Controllers\VerificationController', 'action' => 'verificationAction'),
+        array('route' => '/vote-perdu', 'name'=>'vote.perdu','controller' => 'App\Controllers\VerificationController', 'action' => 'listkoAction'),
+        array('route' => '/progression', 'name'=>'progression','controller' => 'App\Controllers\progressionController', 'action' => 'displayProgression')
+
      );
 
     public function findByPath($route)

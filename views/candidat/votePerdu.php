@@ -29,16 +29,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <script src="../assets/customjs/jquery.min.js"></script>
     <![endif]-->
-    <style type="text/css">
-        .panell{
-            display:flex;
-        }
-    </style>
-    <script type="text/javascript">
-
-    </script>
 </head>
 
 <body>
@@ -57,18 +48,19 @@
             </button>
             <a class="navbar-brand" href="#">
                 <small>
-                    <img width="80%" height="35px" src="../assets/img/Logo.png" />
+                    <img width="80%" height="35px" src="../assets/img/Logo.png"/>
                 </small>
             </a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username'] ?> <b
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username'] ?>
+                    <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="logout"><i class="fa fa-fw fa-power-off"></i> Hiala </a>
+                        <a href="logout"><i class="fa fa-fw fa-power-off"></i> Hiala</a>
                     </li>
                 </ul>
             </li>
@@ -84,13 +76,13 @@
                     <li>
                         <a href="resultat-global"><i class="fa fa-fw fa-bar-chart-o "></i>Valiny</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="vote-perdu"><i class="fa fa-fw fa-trash-o"></i>Vato maty </a>
                     </li>
                     <li>
                         <a href="progression"><i class="fa fa-fw fa-arrow-circle-down"></i>Saisie</a>
                     </li>
-                    <li   class="active">
+                    <li>
                         <a href="edit"><i class="fa fa-fw fa-edit"></i>Fanovana</a>
                     </li>
                 <?php endif;?>
@@ -102,25 +94,33 @@
     <div id="page-wrapper">
 
         <div class="container-fluid">
-
-            <!-- /.row -->
-            <form id="frmChoix" action="" method="post">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <input required="required" autocomplete="off" type="text" placeholder="CODE" name="code" class="form-control">
+            <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <caption style="text-align: left;">Isan'ny vato maty : <?php if(isset($result)){echo count($result); } ?></caption>
+                                <thead>
+                                <th>Bileta N°</th>
+                                <th>Vato maty</th>
+                                <th>Ekipa</th>
+                                <th>Fanamarihana</th>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($result as $r): ?>
+                                    <tr>
+                                        <td><?php echo $r->getCodeBulletin() ?></td>
+                                        <td><?php echo $r->getStatusBulletin(); ?></td>
+                                        <td><?php echo 'Equipa'.$r->getEquipeSaisie() ?></td>
+                                        <td><?php echo $r->getComment(); ?></td>
+                                    </tr>
+                                <?php endforeach ;?>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
+            </div>
 
-                    </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-primary" type="submit">
-                            Envoyer
-                        </button>
-                    </div>
-                </div>
-            </form>
             <!-- /.row -->
-
         </div>
         <!-- /.container-fluid -->
 
@@ -140,6 +140,16 @@
 <script src="../assets/js/plugins/morris/raphael.min.js"></script>
 <script src="../assets/js/plugins/morris/morris.min.js"></script>
 <script src="../assets/js/plugins/morris/morris-data.js"></script>
+
+<!-- Flot Charts JavaScript -->
+<!--[if lte IE 8]>
+<script src="../assets/js/excanvas.min.js"></script><![endif]-->
+<script src="../assets/js/plugins/flot/jquery.flot.js"></script>
+<script src="../assets/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="../assets/js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="../assets/js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="../assets/js/plugins/flot/flot-data.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 </body>
 

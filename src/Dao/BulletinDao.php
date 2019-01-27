@@ -55,4 +55,28 @@ class BulletinDao
         }
         return $all;
     }
+
+    public function checkMax($genre, $codequartier, $codebulletin){
+         $sql = " SELECT SUM(b.STATUS) AS vote FROM bulletin b INNER JOIN candidat c ON c.ID_CANDIDAT=b.ID_CANDIDAT  WHERE c.GENRE = ? AND c.CODE_QUARTIER=? AND b.CODE_BULLETIN =?";
+        $statement = $this->connexion->prepare($sql);
+        $statement->execute(array($genre, $codequartier, $codebulletin));
+        $all = [];
+        while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+            $all[] = $row['vote'];
+        }
+        return $all;
+    }
+
+
+    public function progressionSaisie(){
+        $sql = "SELECT c.NAME, MAX(sys_compteur) AS compteur, input_number FROM sys_user c INNER JOIN bulletin b ON b.sys_user_id = c.id  GROUP BY c.name";
+        $statement = $this->connexion->prepare($sql);
+        $statement->execute();
+        $all = [];
+        while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+            $all[] = array('name'=>$row['NAME']  ,'compteur' => $row['compteur'], 'input_number' => $row['input_number']);
+        }
+        return $all;
+    }
+
 } 
