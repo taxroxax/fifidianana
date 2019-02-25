@@ -107,7 +107,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        <small>FARITRA <?php echo $q; ?></small>
+                        <small>ANDIANY <?php echo $q; ?></small>
                     </h1>
                 </div>
                 <?php foreach ($genre as $g): ?>

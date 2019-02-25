@@ -22,12 +22,12 @@ class VerificationDao {
 
     public function getKoAll()
     {
-        $sql = "select v.* from verification_bulletin v where status_bulletin = ?";
+        $sql = "SELECT v.CODE_BULLETIN,v.STATUS_BULLETIN,u.NAME,v.COMMENT FROM verification_bulletin v INNER JOIN sys_user u ON u.id = v.equipe_saisie WHERE  status_bulletin = ?";
         $statement = $this->connexion->prepare($sql);
         $statement->execute(array('KO'));
         $all = [];
         while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-            $verification = new Verification($row['CODE_BULLETIN'],$row['COMMENT'],$row['EQUIPE_SAISIE'],$row['STATUS_BULLETIN']);
+            $verification = new Verification($row['CODE_BULLETIN'],$row['COMMENT'],$row['NAME'],$row['STATUS_BULLETIN']);
             $all[] = $verification;
         }
         return $all;

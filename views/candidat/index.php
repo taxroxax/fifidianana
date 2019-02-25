@@ -126,7 +126,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $q; ?></div>
-                                        <div>FARITRA</div>
+                                        <div>ANDIANY</div>
                                     </div>
                                 </div>
                             </div>

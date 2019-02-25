@@ -23,6 +23,8 @@
 
     <!-- Custom Fonts -->
     <link href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/loading-bar.css"/>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -103,13 +105,21 @@
                             <th>Ekipa</th>
                             <th>Vita</th>
                             <th>Tratrarina</th>
+                            <th>Fanehoana</th>
                             </thead>
                             <tbody>
                             <?php foreach ($list as $r): ?>
+                                <?php
+                                $pourcentage = 0;
+                                if(isset($r['compteur'])){
+                                    $pourcentage = ($r['compteur'] * 100 / $r['input_number']);
+                                }
+                                ?>
                                 <tr>
                                     <td><?php echo $r['name'] ?></td>
                                     <td><?php echo $r['compteur'] ?></td>
                                     <td><?php echo $r['input_number'] ?></td>
+                                    <td width="40px"><div data-preset="stripe" class="ldBar label-center" data-value="<?php echo $pourcentage ?>" > <?php echo $pourcentage.' %' ?> </td>
                                 </tr>
                             <?php endforeach ;?>
                             </tbody>
@@ -148,6 +158,7 @@
 <script src="../assets/js/plugins/flot/jquery.flot.pie.js"></script>
 <script src="../assets/js/plugins/flot/flot-data.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript" src="../assets/customjs/loading-bar.js"></script>
 
 </body>
 

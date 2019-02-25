@@ -106,14 +106,16 @@
                                 <th>Fanamarihana</th>
                                 </thead>
                                 <tbody>
+                                <?php if(isset($result)):?>
                                 <?php foreach ($result as $r): ?>
                                     <tr>
                                         <td><?php echo $r->getCodeBulletin() ?></td>
                                         <td><?php echo $r->getStatusBulletin(); ?></td>
-                                        <td><?php echo 'Equipa'.$r->getEquipeSaisie() ?></td>
+                                        <td><?php echo $r->getEquipeSaisie() ?></td>
                                         <td><?php echo $r->getComment(); ?></td>
                                     </tr>
                                 <?php endforeach ;?>
+                                <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
